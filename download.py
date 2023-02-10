@@ -9,8 +9,8 @@ def download_model():
     os.makedirs("dreambooth_weights/")
     s3 = boto3.resource(service_name='s3', region_name='oss-cn-shenzhen', aws_access_key_id='LTAI5tRwn1RzJSUQgjeYEeqR', aws_secret_access_key='2NyzQeEWu9GmFIVnDlGDnHAZ6sy4WT')
     bucket = s3.Bucket("ssssrr")
-    for obj in bucket.objects.filter(Prefix="dreambooth/"):
-        target = os.path.join("dreambooth_weights/", os.path.relpath(obj.key, "dreambooth/"))
+    for obj in bucket.objects.filter(Prefix="/"):
+        target = os.path.join("dreambooth_weights/", os.path.relpath(obj.key, "/"))
         if not os.path.exists(os.path.dirname(target)):
             os.makedirs(os.path.dirname(target))
         if obj.key[-1] == '/':
