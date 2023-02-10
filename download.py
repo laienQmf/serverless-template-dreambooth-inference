@@ -13,7 +13,7 @@ def download_model():
         info("\n");
     
     bucket = s3.Bucket("ssssrr")
-    for obj in bucket.objects.filter(Prefix="ssssrr/dreambooth"):
+    for obj in bucket.objects.filter(Prefix="s3://dreambooth"):
         print(obj.key);
         print('\n');
         target = os.path.join("dreambooth_weights/", os.path.relpath(obj.key, "ssssrr/dreambooth"))
