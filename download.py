@@ -13,10 +13,10 @@ def download_model():
         info("\n");
     
     bucket = s3.Bucket("dreambooth-1251401306")
-    for obj in bucket.objects.filter(Prefix="dreambooth"):
+    for obj in bucket.objects.filter(Prefix="dreambooth/"):
         print(obj.key);
         print('\n');
-        target = os.path.join("dreambooth_weights/", os.path.relpath(obj.key, "dreambooth"))
+        target = os.path.join("dreambooth_weights/", os.path.relpath(obj.key, "dreambooth/"))
         
         if not os.path.exists(os.path.dirname(target)):
             os.makedirs(os.path.dirname(target))
