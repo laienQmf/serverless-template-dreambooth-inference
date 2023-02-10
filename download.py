@@ -7,9 +7,9 @@ import os
 def download_model():
     # Download the weights from s3 (can be changed to download weights from any cloud)
     os.makedirs("dreambooth_weights/")
-    s3 = boto3.resource(service_name='s3', region_name='AWS_REGION', aws_access_key_id='AWS_ACCESS_KEY', aws_secret_access_key='AWS_SECRET_ACCESS_KEY')
-    bucket = s3.Bucket("BUCKET_NAME")
-    for obj in bucket.objects.filter(Prefix="FOLDER_NAME"):
+    s3 = boto3.resource(service_name='s3', region_name='oss-cn-shenzhen', aws_access_key_id='LTAI5tRwn1RzJSUQgjeYEeqR', aws_secret_access_key='2NyzQeEWu9GmFIVnDlGDnHAZ6sy4WT')
+    bucket = s3.Bucket("ssssrr")
+    for obj in bucket.objects.filter(Prefix="results/"):
         target = os.path.join("dreambooth_weights/", os.path.relpath(obj.key, "FOLDER_NAME"))
         if not os.path.exists(os.path.dirname(target)):
             os.makedirs(os.path.dirname(target))
