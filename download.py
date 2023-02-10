@@ -11,18 +11,18 @@ def download_model():
     for bucket in s3.buckets.all():
         info(bucket.name)
         info("\n");
+        for obj in bucket.objects.filter(Prefix="dreambooth/"):
+            print(obj.key);
+            print('\n');
+            target = os.path.join("dreambooth_weights/", os.path.relpath(obj.key, "dreambooth/"))
+
+            if not os.path.exists(os.path.dirname(target)):
+                os.makedirs(os.path.dirname(target))
+            if obj.key[-1] == '/':
+                continue
+            bucket.download_file(obj.key, target)
+# bucket = s3.Bucket("dreambooth-1251401306")
     
-    bucket = s3.Bucket("dreambooth-1251401306")
-    for obj in bucket.objects.filter(Prefix="dreambooth/"):
-        print(obj.key);
-        print('\n');
-        target = os.path.join("dreambooth_weights/", os.path.relpath(obj.key, "dreambooth/"))
-        
-        if not os.path.exists(os.path.dirname(target)):
-            os.makedirs(os.path.dirname(target))
-        if obj.key[-1] == '/':
-            continue
-        bucket.download_file(obj.key, target)
 
 if __name__ == "__main__":
     download_model()
